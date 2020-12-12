@@ -1,6 +1,8 @@
 import * as React from "react"
 import Nav from "../components/Nav"
-
+import logo from "../images/logo.jpg";
+import {useState} from 'react';
+import * as ipaddress from "ip-address";
 
 // styles
 const pageStyles = {
@@ -40,40 +42,23 @@ const linkStyles = {
   color: "#8954A8",
 }
 
-// data
-const links = [
-  {
-    text: "Documentation",
-    url: "https://www.gatsbyjs.com/docs/",
-  },
-  {
-    text: "Tutorials",
-    url: "https://www.gatsbyjs.com/tutorial/",
-  },
-  {
-    text: "Guides",
-    url: "https://www.gatsbyjs.com/tutorial/",
-  },
-  {
-    text: "API Reference",
-    url: "https://www.gatsbyjs.com/docs/api-reference/",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-  },
-  {
-    text: "Cheat Sheet",
-    url: "https://www.gatsbyjs.com/docs/cheat-sheet/",
-  },
-]
 
 // markup
+const doit = (address) =>{
+  console.log(address.bigInteger())
+}
+
 const IndexPage = () => {
+  const  [number, setnumber] = useState(111);
+  const address = new ipaddress.Address4('192.168.1.0/24');
+  //address.big()
   return (
   <>
   <Nav></Nav>
-  
+  <img src={logo} alt="Logo" />
+  <button onClick={()=> setnumber(number+1)}>Clicky</button>
+  <h3>{number}</h3>
+  <button onClick={() => doit(address)}>{address.address}</button>
   </>
   )
 }
